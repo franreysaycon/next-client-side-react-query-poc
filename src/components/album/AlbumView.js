@@ -2,10 +2,10 @@ import React from "react"
 import { useQuery } from "react-query"
 import resources from "../../api/resources"
 import getAlbum from "../../api/getAlbum"
-import Link from "next/link"
 import { List, ListItem } from "@chakra-ui/layout"
+import { Link } from "react-router-dom"
 
-const AlbumPage = () => {
+const AlbumView = () => {
     const { data, isLoading } = useQuery(resources.ALBUM, getAlbum)
 
     if(isLoading){
@@ -16,7 +16,7 @@ const AlbumPage = () => {
         {
             data && data.map(({ id, title }) => (
                 <ListItem>                
-                    <Link href="/album/[id]" as={`/album/${id}`}>
+                    <Link to={`/album/${id}`}>
                         {title}
                     </Link>
                 </ListItem>
@@ -25,4 +25,4 @@ const AlbumPage = () => {
     </List>
 }
 
-export default AlbumPage
+export default AlbumView
