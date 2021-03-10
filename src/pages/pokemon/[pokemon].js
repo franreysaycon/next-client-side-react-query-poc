@@ -25,14 +25,13 @@ export const getStaticProps = async ({ query }) => {
     return { 
         props: { pokemon },
         revalidate: 1,
-        fallback: false,
     }
 }
 
 export const getStaticPaths = () => {
     return {
         paths: [],
-        fallback: false,
+        fallback: 'blocking',
     }
 }
 
