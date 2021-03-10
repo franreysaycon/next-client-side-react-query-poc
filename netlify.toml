@@ -1,0 +1,9 @@
+[[redirects]]
+  from = "/album/*"
+  to = "/album.html"
+  status = 200
+
+[[redirects]]
+  from = "/pokemon/*"
+  to = "/pokemon.html"
+  status = 200
