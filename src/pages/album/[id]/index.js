@@ -25,9 +25,19 @@ const SpecificAlbumPage = ({ album }) => {
     </Box>
 }
 
-SpecificAlbumPage.getInitialProps = async ({ query }) => {
+export const getStaticProps = async ({ query }) => {
     const album = await getSpecificAlbum(query.id)
-    return { album }
+    return { 
+        props: { album },
+        revalidate: 1,
+    }
+}
+
+export const getStaticPaths = () => {
+    return {
+        paths: [],
+        fallback: false,
+    }
 }
 
 export default SpecificAlbumPage

@@ -8,7 +8,7 @@ const PokemonPage = ({ pokemon }) => {
     const router = useRouter()
     const pokemonName = router.query.pokemon
     const { data, isLoading } = useQuery([resources.POKEMON,  pokemonName], async () => {
-        await getPokemon(pokemonName)
+        return await getPokemon(pokemonName)
     }, {
         initialData: pokemon,
     })
@@ -20,9 +20,20 @@ const PokemonPage = ({ pokemon }) => {
     return <img src={data?.sprites?.back_default} />
 }
 
-PokemonPage.getInitialProps = async ({ query }) => {
+export const getStaticProps = async ({ query }) => {
     const pokemon = await getPokemon(query.pokemon)
-    return { pokemon }
+    return { 
+        props: { pokemon },
+        revalidate: 1,
+        fallback: false,
+    }
+}
+
+export const getStaticPaths = () => {
+    return {
+        paths: [],
+        fallback: false,
+    }
 }
 
 export default PokemonPage
