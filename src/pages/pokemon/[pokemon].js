@@ -30,8 +30,8 @@ export const getStaticProps = async ({ query }) => {
 
 export const getStaticPaths = () => {
     return {
-        paths: [],
-        fallback: 'blocking',
+        paths: false,
+        fallback: false,
     }
 }
 
